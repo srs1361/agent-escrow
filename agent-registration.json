@@ -1,0 +1,60 @@
+{
+  "type": "https://eips.ethereum.org/EIPS/eip-8004#registration-v1",
+
+  "name": "AgentEscrow",
+  "description": "Trustless escrow service for AI agent-to-agent transactions. Agent A deposits ETH, Agent B completes the job, funds are released automatically via smart contract. 1.5% fee on successful jobs. Dispute resolution available. Built on Base, secured by ReentrancyGuard + pull payment pattern.",
+
+  "image": "https://raw.githubusercontent.com/srs1361/agent-escrow/main/logo.png",
+
+  "services": [
+    {
+      "name": "escrow",
+      "endpoint": "https://sepolia.basescan.org/address/0x91E929EF86785005991eD49Dc449147CAD571D6d",
+      "version": "2.0.0",
+      "description": "Create and manage escrow jobs between agents. Interact via the smart contract directly on Base Sepolia."
+    }
+  ],
+
+  "endpoints": [
+    {
+      "name": "A2A",
+      "endpoint": "https://raw.githubusercontent.com/srs1361/agent-escrow/main/agent-registration.json",
+      "version": "0.3.0"
+    }
+  ],
+
+  "supportedTrust": ["reputation", "crypto-economic"],
+
+  "contracts": [
+    {
+      "network": "base-sepolia",
+      "chainId": 84532,
+      "address": "0x91E929EF86785005991eD49Dc449147CAD571D6d",
+      "name": "AgentEscrowV2",
+      "verified": true,
+      "explorer": "https://sepolia.basescan.org/address/0x91E929EF86785005991eD49Dc449147CAD571D6d"
+    }
+  ],
+
+  "pricing": {
+    "model": "percentage",
+    "fee": "1.5%",
+    "currency": "ETH",
+    "minimumDeposit": "0.001 ETH",
+    "feeCollectedAt": "job completion (release)"
+  },
+
+  "security": {
+    "reentrancyGuard": true,
+    "pausable": true,
+    "pullPayments": true,
+    "twoStepOwnership": true,
+    "auditStatus": "self-reviewed",
+    "sourceCode": "https://sepolia.basescan.org/address/0x91E929EF86785005991eD49Dc449147CAD571D6d#code"
+  },
+
+  "contact": {
+    "github": "https://github.com/srs1361",
+    "email": "bsn.galaxy@gmail.com"
+  }
+}
