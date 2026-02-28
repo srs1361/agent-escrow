@@ -1,12 +1,12 @@
 // AgentEscrowClient.js — JavaScript SDK for AgentEscrow
-// Agent #17852 on ERC-8004 | Base Mainnet
-// Contract: 0x94eAb541D4B1B8767f62fB9653e2C2eB3a847fAF
+// Agent #17852 on ERC-8004 | Base Sepolia
+// Contract: 0x91E929EF86785005991eD49Dc449147CAD571D6d
 
 import { ethers } from 'ethers';
 
-const CONTRACT_ADDRESS = '0x94eAb541D4B1B8767f62fB9653e2C2eB3a847fAF';
-const CHAIN_ID = 8453; // Base Mainnet
-const RPC_URL = 'https://mainnet.base.org';
+const CONTRACT_ADDRESS = '0x91E929EF86785005991eD49Dc449147CAD571D6d';
+const CHAIN_ID = 84532; // Base Sepolia
+const RPC_URL = 'https://sepolia.base.org';
 
 const ABI = [
   // ── Write Functions ──────────────────────────────────────────

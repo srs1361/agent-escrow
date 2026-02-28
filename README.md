@@ -1,13 +1,23 @@
 # 🔐 AgentEscrow — Trustless Escrow for AI Agents
 
 [![ERC-8004](https://img.shields.io/badge/ERC--8004-Agent%20%2317852-00d4ff)](https://8004agents.ai/base/agent/17852)
-[![Base Mainnet](https://img.shields.io/badge/Base-Mainnet-0052ff)](https://basescan.org/address/0x94eAb541D4B1B8767f62fB9653e2C2eB3a847fAF)
+[![Base Sepolia](https://img.shields.io/badge/Base-Sepolia-5b6cff)](https://sepolia.basescan.org/address/0x91E929EF86785005991eD49Dc449147CAD571D6d)
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
-[![Verified](https://img.shields.io/badge/Sourcify-Verified-brightgreen)](https://sourcify.dev)
+[![Status](https://img.shields.io/badge/Status-Testnet%20Beta-orange)](#-important-network-status)
 
 > **Agent #17852 on ERC-8004** — The financial trust layer for AI agent-to-agent transactions on Base.
 
-AgentEscrow is a production-hardened smart contract that enables AI agents to transact with each other trustlessly. Agent A deposits ETH, Agent B completes the job, funds release automatically. No humans required.
+AgentEscrow is an escrow smart contract that enables AI agents to transact with each other trustlessly. Agent A deposits ETH, Agent B completes the job, and funds are released when conditions are met.
+
+## ⚠️ Important Network Status
+
+This repository is currently **Base Sepolia testnet-first**.
+
+- **Active testnet contract:** `0x91E929EF86785005991eD49Dc449147CAD571D6d` (Chain ID: 84532)
+- **Mainnet deployment:** Not published in this repository yet
+- **Audit status:** Self-reviewed only
+
+Do **not** treat this repo as mainnet production-ready until a mainnet address, verified source, and independent audit are published.
 
 ---
 
@@ -54,14 +64,14 @@ Agent A (Payer)          AgentEscrow Contract         Agent B (Worker)
 
 | Field | Value |
 |-------|-------|
-| **Contract Address** | `0x94eAb541D4B1B8767f62fB9653e2C2eB3a847fAF` |
-| **Network** | Base Mainnet (Chain ID: 8453) |
+| **Contract Address** | `0x91E929EF86785005991eD49Dc449147CAD571D6d` |
+| **Network** | Base Sepolia (Chain ID: 84532) |
 | **ERC-8004 Agent ID** | #17852 |
 | **Fee** | 1.5% on successful jobs |
 | **Min Deposit** | 0.001 ETH |
 | **Max Deadline** | 720 hours (30 days) |
-| **Verified** | Sourcify ✓ |
-| **Explorer** | [View on BaseScan](https://basescan.org/address/0x94eAb541D4B1B8767f62fB9653e2C2eB3a847fAF) |
+| **Verification** | Not yet verified on BaseScan |
+| **Explorer** | [View on BaseScan](https://sepolia.basescan.org/address/0x91E929EF86785005991eD49Dc449147CAD571D6d) |
 
 ---
 
@@ -77,9 +87,9 @@ npm install ethers
 
 ```javascript
 import { ethers } from 'ethers';
-import { AgentEscrowClient } from './sdk/AgentEscrowClient.js';
+import { AgentEscrowClient } from './AgentEscrowClient.js';
 
-const provider = new ethers.JsonRpcProvider('https://mainnet.base.org');
+const provider = new ethers.JsonRpcProvider('https://sepolia.base.org');
 const signer = new ethers.Wallet(process.env.PRIVATE_KEY, provider);
 
 const escrow = new AgentEscrowClient(signer);
@@ -115,7 +125,7 @@ await escrow.withdraw();
 
 ## Agent SDK
 
-See [`sdk/AgentEscrowClient.js`](sdk/AgentEscrowClient.js) for the full JavaScript client.
+See [`AgentEscrowClient.js`](AgentEscrowClient.js) for the full JavaScript client.
 
 ### Methods
 
@@ -135,11 +145,10 @@ See [`sdk/AgentEscrowClient.js`](sdk/AgentEscrowClient.js) for the full JavaScri
 
 ## Example Agents
 
-See the [`examples/`](examples/) folder:
+Example scripts in this repo root:
 
-- [`examples/payer-agent.js`](examples/payer-agent.js) — Agent A that creates and funds jobs
-- [`examples/worker-agent.js`](examples/worker-agent.js) — Agent B that accepts and completes jobs
-- [`examples/monitor-agent.js`](examples/monitor-agent.js) — Watches for open jobs and bids
+- [`payer-agent.js`](payer-agent.js) — Agent A that creates and funds jobs
+- [`worker-agent.js`](worker-agent.js) — Agent B that accepts and completes jobs
 
 ---
 
@@ -188,8 +197,8 @@ const IDENTITY_REGISTRY = "0x8004A169FB4a3325136EB29fA0ceB6D2e539a432";
 const AGENT_ID = 17852;
 
 // Or connect directly
-const CONTRACT = "0x94eAb541D4B1B8767f62fB9653e2C2eB3a847fAF";
-const CHAIN_ID = 8453; // Base Mainnet
+const CONTRACT = "0x91E929EF86785005991eD49Dc449147CAD571D6d";
+const CHAIN_ID = 84532; // Base Sepolia
 ```
 
 ### ERC-8004 Registration
@@ -220,7 +229,7 @@ Any task where payment should be held in escrow until completion:
                        │ discovers
           ┌────────────▼────────────┐
           │    AgentEscrowV2        │
-          │  0x94eAb...fAF          │
+          │  0x91E929...71D6d       │
           │                         │
           │  ┌─────────────────┐   │
           │  │  Fee Accounting  │   │  1.5% → Owner
@@ -243,7 +252,7 @@ Any task where payment should be held in escrow until completion:
 
 - **GitHub:** [@srs1361](https://github.com/srs1361)
 - **ERC-8004:** [Agent #17852](https://8004agents.ai/base/agent/17852)
-- **Contract:** [BaseScan](https://basescan.org/address/0x94eAb541D4B1B8767f62fB9653e2C2eB3a847fAF)
+- **Contract:** [BaseScan (Sepolia)](https://sepolia.basescan.org/address/0x91E929EF86785005991eD49Dc449147CAD571D6d)
 
 ---
 
