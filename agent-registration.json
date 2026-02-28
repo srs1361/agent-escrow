@@ -1,99 +1,89 @@
-Perfect — mainnet-first is the right move for score credibility.
-
-Here’s a **full `agent-registration.json` (mainnet version)** you can use:
-
-```json
 {
-"type": "https://eips.ethereum.org/EIPS/eip-8004#registration-v1",
-"name": "AgentEscrow",
-"description": "Trustless escrow service for AI agent-to-agent transactions on Base Mainnet. Payer deposits ETH, worker completes task, and funds are released on confirmation. Includes dispute window, pull-payment withdrawals, and 1.5% success fee.",
-"image": "https://raw.githubusercontent.com/srs1361/agent-escrow/main/logo.png",
-"services": [
-{
-"name": "escrow",
-"endpoint": "https://basescan.org/address/0x94eAb541D4B1B8767f62fB9653e2C2eB3a847fAF",
-"version": "2.0.0",
-"description": "Create and manage escrow jobs between agents via AgentEscrowV2 on Base Mainnet."
+  "type": "https://eips.ethereum.org/EIPS/eip-8004#registration-v1",
+  "name": "AgentEscrow",
+  "description": "Trustless escrow service for AI agent-to-agent transactions on Base Sepolia testnet. Payer deposits ETH, worker completes task, and funds are released on confirmation. Includes dispute window, pull-payment withdrawals, and 1.5% success fee.",
+  "image": "https://raw.githubusercontent.com/srs1361/agent-escrow/main/logo.png",
+  "services": [
+    {
+      "name": "escrow",
+      "endpoint": "https://sepolia.basescan.org/address/0x91E929EF86785005991eD49Dc449147CAD571D6d",
+      "version": "2.0.0",
+      "description": "Create and manage escrow jobs between agents via AgentEscrowV2 on Base Sepolia testnet."
+    }
+  ],
+  "endpoints": [
+    {
+      "name": "A2A",
+      "endpoint": "https://raw.githubusercontent.com/srs1361/agent-escrow/main/agent-registration.json",
+      "version": "0.3.0"
+    }
+  ],
+  "capabilities": [
+    "create-escrow-job",
+    "assign-worker",
+    "mark-complete",
+    "release-funds",
+    "claim-refund-on-timeout",
+    "raise-dispute",
+    "withdraw-pull-payment",
+    "read-job-status"
+  ],
+  "tags": [
+    "escrow",
+    "payments",
+    "base-sepolia",
+    "testnet",
+    "a2a",
+    "trustless",
+    "dispute-resolution",
+    "crypto-economic"
+  ],
+  "supportedTrust": [
+    "reputation",
+    "crypto-economic"
+  ],
+  "contracts": [
+    {
+      "network": "base-sepolia",
+      "chainId": 84532,
+      "address": "0x91E929EF86785005991eD49Dc449147CAD571D6d",
+      "name": "AgentEscrowV2",
+      "verified": false,
+      "explorer": "https://sepolia.basescan.org/address/0x91E929EF86785005991eD49Dc449147CAD571D6d"
+    }
+  ],
+  "pricing": {
+    "model": "percentage",
+    "fee": "1.5%",
+    "currency": "ETH",
+    "minimumDeposit": "0.001 ETH",
+    "feeCollectedAt": "job completion (release)",
+    "noFeeOnRefund": true
+  },
+  "trustPolicy": {
+    "disputeWindowHours": 24,
+    "refundRule": "Payer can claim refund after deadline if work is not completed",
+    "releaseRule": "Payer releases funds after verifying deliverable",
+    "limitations": [
+      "No subjective quality oracle on-chain",
+      "Dispute outcomes depend on agreed process and evidence"
+    ]
+  },
+  "security": {
+    "reentrancyGuard": true,
+    "pausable": true,
+    "pullPayments": true,
+    "twoStepOwnership": true,
+    "auditStatus": "self-reviewed",
+    "sourceCode": "https://sepolia.basescan.org/address/0x91E929EF86785005991eD49Dc449147CAD571D6d#code"
+  },
+  "sla": {
+    "supportChannel": "https://github.com/srs1361/agent-escrow/issues",
+    "statusPage": "https://github.com/srs1361/agent-escrow",
+    "response": "best-effort"
+  },
+  "contact": {
+    "github": "https://github.com/srs1361",
+    "email": "bsn.galaxy@gmail.com"
+  }
 }
-],
-"endpoints": [
-{
-"name": "A2A",
-"endpoint": "https://raw.githubusercontent.com/srs1361/agent-escrow/main/agent-registration.json",
-"version": "0.3.0"
-}
-],
-"capabilities": [
-"create-escrow-job",
-"assign-worker",
-"mark-complete",
-"release-funds",
-"claim-refund-on-timeout",
-"raise-dispute",
-"withdraw-pull-payment",
-"read-job-status"
-],
-"tags": [
-"escrow",
-"payments",
-"base-mainnet",
-"a2a",
-"trustless",
-"dispute-resolution",
-"crypto-economic"
-],
-"supportedTrust": ["reputation", "crypto-economic"],
-"contracts": [
-{
-"network": "base",
-"chainId": 8453,
-"address": "0x94eAb541D4B1B8767f62fB9653e2C2eB3a847fAF",
-"name": "AgentEscrowV2",
-"verified": true,
-"explorer": "https://basescan.org/address/0x94eAb541D4B1B8767f62fB9653e2C2eB3a847fAF"
-}
-],
-"pricing": {
-"model": "percentage",
-"fee": "1.5%",
-"currency": "ETH",
-"minimumDeposit": "0.001 ETH",
-"feeCollectedAt": "job completion (release)",
-"noFeeOnRefund": true
-},
-"trustPolicy": {
-"disputeWindowHours": 24,
-"refundRule": "Payer can claim refund after deadline if work is not completed",
-"releaseRule": "Payer releases funds after verifying deliverable",
-"limitations": [
-"No subjective quality oracle on-chain",
-"Dispute outcomes depend on agreed process and evidence"
-]
-},
-"security": {
-"reentrancyGuard": true,
-"pausable": true,
-"pullPayments": true,
-"twoStepOwnership": true,
-"auditStatus": "self-reviewed",
-"sourceCode": "https://basescan.org/address/0x94eAb541D4B1B8767f62fB9653e2C2eB3a847fAF#code"
-},
-"sla": {
-"supportChannel": "https://github.com/srs1361/agent-escrow/issues",
-"statusPage": "https://github.com/srs1361/agent-escrow",
-"response": "best-effort"
-},
-"contact": {
-"github": "https://github.com/srs1361",
-"email": "bsn.galaxy@gmail.com"
-}
-}
-```
-
-### After you replace it
-1. Commit + push
-2. Update 8004 agent metadata to point to this latest raw URL
-3. Recheck profile in 5–10 mins
-4. Then focus on getting 3–5 new positive feedbacks + validations (biggest score gain)
-
-If you want, I’ll give you the exact git commands next.
